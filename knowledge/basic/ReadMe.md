@@ -28,3 +28,13 @@
    - Interface
    - Pointer
    - Channel
+
+2. feature
+
+   - Elegant concurrency using GoRoutines and Channels
+   - Multi-core support
+   - Very good raw CPU-and-memory-bound performance
+   - Types aren’t cumbersome
+   - Built in testing framework
+   - Static code analysis
+   - Compilation / deployment
