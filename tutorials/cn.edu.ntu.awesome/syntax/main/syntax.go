@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	_func "cn.edu.ntu.awesome/v0/syntax/func"
+	"fmt"
+)
 
 const pi = 3.1415926
 const (
@@ -29,7 +32,7 @@ func main() {
 
 	// change sli, so arr will change too
 	sli[1] = 5
-	fmt.Println(arr) 				// [1 2 5]
+	fmt.Println(arr) // [1 2 5]
 	fmt.Println(sli) // [2 5]
 
 	// change arr will not allocate new space, so it will have impact on slice
@@ -84,7 +87,7 @@ func main() {
 	// const: iota will add 1 per const row
 	fmt.Println(Friday) // 5
 
-	changeString()
+	_func.ChangeString()
 	switchDemo1() // 3 4
 
 	// for range
@@ -94,18 +97,6 @@ func main() {
 		fmt.Println(1)
 		break
 	}
-}
-
-func changeString() {
-	s1 := "big"
-	byteS1 := []byte(s1)
-	byteS1[0] = 'p'
-	fmt.Println(string(byteS1))
-
-	s2 := "白萝卜"
-	runeS2 := []rune(s2)
-	runeS2[0] = '红'
-	fmt.Println(string(runeS2))
 }
 
 func switchDemo1() {
