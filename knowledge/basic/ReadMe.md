@@ -31,10 +31,25 @@
 
 2. feature
 
-   - Elegant concurrency using GoRoutines and Channels
+   - GC
+   - `Simple thinking`: no extends, polymorphism, class
+   - Elegant `concurrency` using GoRoutines and Channels
    - Multi-core support
-   - Very good raw CPU-and-memory-bound performance
+   - Very good `raw CPU-and-memory-bound performance`
    - Types aren’t cumbersome
    - Built in testing framework
    - Static code analysis
    - Compilation / deployment
+   - `Cross compile`
+
+3. 优点
+
+   - 自动立即回收
+   - 更丰富的内置类型
+   - `函数多返回值`
+   - 错误处理
+   - 匿名函数和闭包
+   - 类型和接口
+   - 并发编程
+   - 反射
+   - 语言交互性
