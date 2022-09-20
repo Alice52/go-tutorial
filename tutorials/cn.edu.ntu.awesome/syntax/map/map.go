@@ -15,6 +15,32 @@ func init() {
 	nameAndAgeMap["zack"] = 100
 }
 
+func AnyType() {
+	any := map[string]interface{}{
+		"name": "zack",
+		"age":  18,
+	}
+	fmt.Println(any) // map[age:18 name:zack]
+	v, _ := any["name"]
+	log.Println(v) // zack
+
+	switch value := v.(type) {
+	case string:
+		fmt.Printf("string type, and value is %s", value)
+	default:
+		fmt.Println(value)
+	}
+
+	any2 := &map[string]interface{}{
+		"name": "zack",
+		"age":  18,
+	}
+	fmt.Println(any2)  // &map[age:18 name:zack]
+	fmt.Println(*any2) // map[age:18 name:zack]
+	v2, _ := (*any2)["name"]
+	log.Println(v2) // zack
+}
+
 func DeclareAndInitial() {
 	// 1. declare and allocate map
 	nameAndAgeMap = make(map[string]int, 10)

@@ -1,8 +1,9 @@
 package test
 
 import (
-	_map "cn.edu.ntu.awesome/v0/syntax/map"
 	"testing"
+
+	_map "cn.edu.ntu.awesome/v0/syntax/map"
 )
 
 func TestDeclareAndInitial(t *testing.T) {
@@ -11,4 +12,8 @@ func TestDeclareAndInitial(t *testing.T) {
 
 func TestApiUsage(t *testing.T) {
 	_map.ApiUsage()
+}
+
+func TestAnyType(t *testing.T) {
+	_map.AnyType()
 }
