@@ -1,9 +1,11 @@
 package test
 
 import (
-	_func "cn.edu.ntu.awesome/v0/syntax/func"
+	"fmt"
 	"log"
 	"testing"
+
+	_func "cn.edu.ntu.awesome/v0/syntax/func"
 )
 
 func init() {
@@ -14,4 +16,9 @@ func TestAdd(t *testing.T) {
 	_func.ChangeString()
 
 	t.Logf("test add succ")
+}
+
+func TestAsArg(t *testing.T) {
+	v := _func.FasArg(1, 5, func(i1, i2 int) int { return i1 + i2 })
+	fmt.Printf("v: %v\n", v)
 }

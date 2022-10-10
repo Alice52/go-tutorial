@@ -1,18 +1,54 @@
 package _defer
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 	"os"
 )
 
-/**
-1. defer is stored in stack
-2. function is same as using in .netcore
-    + wraps defer function return will trigger defer execute
-	+ wraps defer function execute to last line will trigger defer execute
-    + this goroutine occurs exception will trigger defer execute
-*/
+///  version2
+
+func Calc(index string, a, b int) int {
+	ret := a + b
+	fmt.Println(index, a, b, ret)
+	return ret
+}
+
+// 5
+func F1() int {
+	x := 5 // 1. x=5
+	defer func() {
+		x++ // 3. x=6, 但是返回值是5
+	}()
+	return x // 2. x=5, 此时就确定了
+}
+
+// 6
+func F2() (x int) { // 1. x 最初是0
+	defer func() {
+		x++ // 3. x=6, 返回的是 x 变量
+	}()
+	return 5 // 2. x=5
+}
+
+// 5 与 F1() 一样
+func F3() (y int) {
+	x := 5
+	defer func() {
+		x++
+	}()
+	return x
+}
+
+func F4() (x int) { // 1. x=0
+	defer func(x int) {
+		x++ // 4. x=1
+	}(x) // 2. x=0 作为参数
+	return 5 // 3. x=5
+}
+
+/// version1
 
 // ***************************** 1 ***************************
 // 3 2 1
