@@ -8,9 +8,13 @@ import (
 	"time"
 )
 
-var nameAndAgeMap map[string]int
+var (
+	nameAndAgeMap map[string]int // init as nil
+	age           int            // init as 0
+)
 
 func init() {
+	age = 18
 	nameAndAgeMap = make(map[string]int, 10)
 	nameAndAgeMap["zack"] = 100
 }

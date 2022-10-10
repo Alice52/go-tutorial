@@ -5,6 +5,14 @@ import (
 	"log"
 )
 
+var (
+	s [10]int
+)
+
+func init() {
+	s[0] = 1
+}
+
 func CreateSlice() []int {
 	//1.声明切片
 	var s1 []int

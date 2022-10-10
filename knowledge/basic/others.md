@@ -1,3 +1,12 @@
+## 初始化
+
+1. var: 默认会被初始化为 zero-value
+
+   - map 会被初始化为 nil
+   - `*指针` 会被初始化为 nil
+
+2. `func init()` 会被优先执行
+
 ## 任意类型 Map
 
 1. 初始化
@@ -73,8 +82,6 @@
    }
    ```
 
-````
-
 ## 重载
 
 1. go 语言本身为了简洁性, 所以不提供对重载的支持
@@ -125,4 +132,3 @@
        Handler(func(options *Options) { options.RetryMaxNum = 1 }, func(options *Options) { options.TimeOut = time.Millisecond })
    }
    ```
-````

@@ -2,7 +2,10 @@ package _struct
 
 import "fmt"
 
+// new type, value is int
 type NewInt int
+
+// alias
 type MyInt = int
 
 func AliasInfo() {

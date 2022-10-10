@@ -4,6 +4,9 @@ import (
 	"log"
 )
 
+// will init as fileds zero value.
+var person Person
+
 type Person struct {
 	name string
 	city string
@@ -12,7 +15,7 @@ type Person struct {
 
 func Initialized() {
 	// 1. declare and use
-	var person Person
+	// var person Person
 	person.age = 15
 	person.name = "zack"
 	log.Printf("person: %#v\n", person)
@@ -30,6 +33,8 @@ func Initialized() {
 		age:  18,
 	}
 	log.Printf("type: %T, addr: %p,  person: %#v\n", p5, &p5, p5)
+	pp := &p5
+	log.Printf("type: %T, addr: %p,  person: %#v\n", pp, pp, *pp)
 
 	// 4. initialize and pointer
 	p6 := &Person{
