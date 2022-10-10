@@ -1,6 +1,22 @@
 package _const
 
-import "log"
+import (
+	"fmt"
+	"log"
+)
+
+// all followed var will be init as previous
+const (
+	a1 = 10
+	a2
+	a3
+)
+
+func init() {
+	fmt.Printf("a1: %v\n", a1)
+	fmt.Printf("a2: %v\n", a2)
+	fmt.Printf("a3: %v\n", a3)
+}
 
 const (
 	a, b = iota + 1, iota + 2 // 1,2
