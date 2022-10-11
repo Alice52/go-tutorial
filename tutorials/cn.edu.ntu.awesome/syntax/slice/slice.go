@@ -32,9 +32,38 @@ func CreateSlice() []int {
 
 	// 5.从数组切片
 	arr := [5]int{1, 2, 3, 4, 5}
-	var s6 []int
-	s6 = arr[1:4]
+	var s6 []int = arr[1:4]
 	fmt.Println(s6)
+
+	// init
+	s7 := []int{1, 2, 3}
+	s8 := s7
+	s8[2] = 100
+	fmt.Printf("s7: %v, type: %T\n", s7, s7)
+	fmt.Printf("s8: %v, type: %T\n", s8, s8)
+
+	var a1 = *new(int)
+	a1 = 100
+	fmt.Println(a1)
+
+	var a2 = new(int)
+	fmt.Println(a2)
+
+	var a3 = new([]int) // nil
+	fmt.Println(a3, append(*a3, 1))
+	var a31 = *new([]int)
+	a31 = append(a31, 1)
+	fmt.Println(a31)
+
+	var a4 *int
+	// *a4 = 100 // panic
+	fmt.Println(a4)
+
+	var a5 = *new([]int)
+	if a5 == nil {
+		fmt.Println("a5 is nil")
+	}
+	fmt.Println(a5)
 
 	return s6
 }

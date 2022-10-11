@@ -57,3 +57,8 @@ func TestArrayValues(t *testing.T) {
 
 	_array.ArrayValues()
 }
+
+func TestType(t *testing.T) {
+
+	_array.DistinctType()
+}

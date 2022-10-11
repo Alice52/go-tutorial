@@ -10,32 +10,45 @@
    v1, _ := foo() // 匿名变量(不占用空间, 不分配内存)
    ```
 
-2. 数组变量
+2. 数组变量: 复制后修改彼此不影响
+
+   - `*new`: 值
+   - 无长度初始化: `[2]int{2, 5}`
+   - 可变长度初始化
+   - 声明: 会被初始化为 zero-value
 
    ```go
    var a1 [2]int // declare and init as zero
    var a2 = [2]int{1,2}                        // declare and init
    var a3 = [5]string{3: "ab", 4: "cd"}
    var a4 = [...]int{1,2}                      // variable-length array declaration
-   var a5 = new([5]int)                       // arr1 is pointer: 修改后都会变
+   var a5 = *new([5]int) // a5 is array
    ```
 
 3. slice 变量: 定义声明时无长度
+
+   - make
+   - new: 返回指针
+   - 无长度初始化: `[]int{2, 5}`
+   - 截取数组
+   - 声明: 会被初始化为 nil
 
    ```go
    var s1 []int // declare and init as nil
    var s3 []int = make([]int, 0, 10)
    var s3 = make([]int, 0, 10)
    s6 := *new([]int) // init as nil
+   var s6 = new([5]int) // s6 is slice and pointer: 修改后都会变
 
    s4 := a2[1:4]
-   s5 := []int{2， 5}
+   s5 := []int{2, 5}
    ```
 
 4. map 变量
 5. struct 变量
 6. 函数变量
 7. 指针变量
+8. _接口变量_
 
 ## 初始化
 
@@ -157,7 +170,6 @@
        return options
    }
 
-
    func Handler(option ...Option) {
        op := loadOp(option ...)
    }
@@ -181,3 +193,5 @@
 5. %x: 16 进制
 6. %o: 8 进制
 7. %b: 2 进制
+8. %v: 变量值
+9. %p: 变量地址

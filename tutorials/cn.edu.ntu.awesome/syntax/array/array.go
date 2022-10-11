@@ -5,6 +5,32 @@ import (
 	"log"
 )
 
+func DistinctType() {
+	// this is slice
+	var a1 = new([5]int)
+	a1[0] = 1
+	a2 := a1
+	a2[0] = 2
+	fmt.Printf("a1: %v\n", a1)
+	fmt.Printf("a2: %v\n", a2)
+
+	// this is array
+	var a3 = *new([5]int)
+	a3[0] = 1
+	a4 := a3
+	a4[0] = 2
+	fmt.Printf("a3: %v\n", a3)
+	fmt.Printf("a4: %v\n", a4)
+
+	// this is array: but a6 is slice
+	var a5 = *new([5]int)
+	a5[0] = 1
+	a6 := &a5 // a6 is slice
+	a6[0] = 2
+	fmt.Printf("a5: %v\n", a5)
+	fmt.Printf("a6: %v\n", a6)
+}
+
 func InitArray() {
 	var arrq [5]int
 	fmt.Printf("arrq: %v\n", arrq)

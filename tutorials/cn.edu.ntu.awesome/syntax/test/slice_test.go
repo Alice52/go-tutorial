@@ -1,9 +1,10 @@
 package test
 
 import (
-	_slice "cn.edu.ntu.awesome/v0/syntax/slice"
 	"log"
 	"testing"
+
+	_slice "cn.edu.ntu.awesome/v0/syntax/slice"
 )
 
 func TestSliceCreate(t *testing.T) {
