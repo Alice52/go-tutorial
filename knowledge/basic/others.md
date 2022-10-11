@@ -3,9 +3,9 @@
 1. 基本类型变量
 
    ```go
-   var a int  // declare and init as 0
-   var b int = 100  // declare and init as 0
-   var c = 100
+   var[int] a int  // declare and init as 0
+   var[int] b int = 100  // declare and init as 0
+   var[int] c = 100
    d := 100  // 只能在函数内
    v1, _ := foo() // 匿名变量(不占用空间, 不分配内存)
    ```
@@ -27,9 +27,9 @@
 
 3. slice 变量: 定义声明时无长度
 
-   - make
+   - make: 返回引用本身
    - new: 返回指针
-   - 无长度初始化: `[]int{2, 5}`
+   - 无长度初始化: 对象本身, `[]int{2, 5}`
    - 截取数组
    - 声明: 会被初始化为 nil
 
@@ -37,16 +37,81 @@
    var s1 []int // declare and init as nil
    var s3 []int = make([]int, 0, 10)
    var s3 = make([]int, 0, 10)
-   s6 := *new([]int) // init as nil
+   // s6 := *new([]int) // init as nil
    var s6 = new([5]int) // s6 is slice and pointer: 修改后都会变
 
    s4 := a2[1:4]
    s5 := []int{2, 5}
    ```
 
-4. map 变量
+4. map 变量: `map[KeyType]ValueType`
+
+   - 声明
+   - 初始化: 对象本身
+   - make: 引用本身
+   - ~~new: 返回指针~~
+
+   ```go
+   // 1. declare
+   var nmap map[string]int // value is nil
+
+   // 2. declare and init
+   var nmap map[string]int = make(map[string]int, 10)
+   nmap["zack"] = 100
+
+   // 3. init
+   userInfo := map[string]string{
+       "username": "prof.cn",
+       "password": "123456",
+   }
+
+   // 4. 任意类型
+   any := map[string]interface{}{
+      "name": "zack",
+      "age":  18,
+   }
+   ```
+
 5. struct 变量
+
+   - `var 结构体实例 结构体类型`
+   - new 会直接分配为 z-v: **因为值 struct 是值类型**
+   - 初始化: 值 || 指针
+
+     ```go
+     // 1. var
+     var person Person
+     person.age = 15
+     person.name = "zack"
+
+     // 2. pointer
+     p := new(Person)
+     p.name = "kayla"
+     p.age = 15
+
+     // 3. initialize
+     p5 := Person{
+         name: "prof.cn",
+         city: "BeiJing",
+         age:  18,
+     }
+     p6 := &p5
+
+     // 4. initialize and pointer
+     p6 := &Person{
+         "prof.cn",
+         "BeiJing",
+         18,
+     }
+     ```
+
 6. 函数变量
+
+   - 类型: `type cal func(int, int) int`
+   - 变量: `var cal func(int, int) int`
+   - 参数: `cal func(int, int) int`
+   - 返回值: `func(int, int) int`
+
 7. 指针变量
 8. _接口变量_
 

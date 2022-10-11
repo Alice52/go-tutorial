@@ -57,10 +57,13 @@ func DeclareAndInitial() {
 		"password": "123456",
 	}
 	fmt.Println(userInfo)
+
+	// 3. get ptr
+	ptr := &userInfo
+	fmt.Printf("ptr: %v\n", ptr)
 }
 
-func ApiUsage() {
-
+func Exist() {
 	// 1. value, ok := map[key]
 	v, ok := nameAndAgeMap["zack"]
 	if ok {
@@ -68,7 +71,9 @@ func ApiUsage() {
 	} else {
 		log.Println("not find")
 	}
+}
 
+func Traverse() {
 	// 2. traverse map
 	for k, v := range nameAndAgeMap {
 		log.Println(k, v)
@@ -77,6 +82,9 @@ func ApiUsage() {
 	for k := range nameAndAgeMap {
 		fmt.Println(k)
 	}
+}
+
+func ApiUsage() {
 
 	// 3. delete(map, key)
 	delete(nameAndAgeMap, "zack")
