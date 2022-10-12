@@ -3,9 +3,25 @@ package test
 import (
 	"log"
 	"testing"
+	"unsafe"
 
 	_slice "cn.edu.ntu.awesome/v0/syntax/slice"
+	"github.com/stretchr/testify/assert"
 )
+
+func TestSize(t *testing.T) {
+	var es []int
+	assert.Nil(t, es)
+	assert.NotEqualValues(t, unsafe.Sizeof(es), 0)
+
+	var es2 = []int{}
+	assert.NotNil(t, es2)
+	assert.NotEqualValues(t, unsafe.Sizeof(es2), 0)
+
+	var v struct{}
+	assert.NotNil(t, v)
+	assert.EqualValues(t, unsafe.Sizeof(v), 0)
+}
 
 func TestSliceCreate(t *testing.T) {
 	slice1 := _slice.CreateSlice()

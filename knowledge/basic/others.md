@@ -1,3 +1,26 @@
+## important
+
+1. **for 循环下的 v 值是不一样的, 但是地址是一直复用的**
+
+   - 因此, 尽量不要使用其引用`&`
+
+   ```go
+   m := make(map[string]*student)
+   students := []student{
+       {name: "prof.cn", age: 18},
+       {name: "testing", age: 23},
+       {name: "blog", age: 28},
+   }
+
+   for _, stu := range students {
+       m[stu.name] = &stu
+   }
+   for k, v := range m {
+       // nmae will always return blog
+       fmt.Println(k, "=>", v.name)
+   }
+   ```
+
 ## 定义变量
 
 1. 基本类型变量
@@ -166,38 +189,8 @@
 ## 继承
 
 1. go 语言本身为了简洁性, 所以不提供对继承的支持
-2. 使用组合代替继承
-
-   ```go
-   package main
-
-   import "fmt"
-
-   type Skills  []string
-
-   type person struct {
-     name string
-     age  int
-     weight int
-   }
-
-   type Student struct {
-     person    //继承
-     Skills
-     int
-     spe string
-   }
-
-   func main() {
-     //方式一,全部指定
-     xuxu := Student{person{"xuxu",25,68}, []string{"anatomy"}, 1, "boy"}
-     //方式二,指哪打哪
-     jane := Student{person:person{"Jane",25,100}, spe:"Biology"}
-
-     fmt.Printf("His name is %s", jane.name)
-     fmt.Printf("His name is %s", xuxu.name)
-   }
-   ```
+2. 使用组合代替继承: `通过嵌套匿名结构体实现继承`
+3. [sample](/tutorials/cn.edu.ntu.awesome/syntax/oop/oop.go)
 
 ## 重载
 
@@ -260,3 +253,10 @@
 7. %b: 2 进制
 8. %v: 变量值
 9. %p: 变量地址
+
+## 空间: `unsafe.Sizeof()`
+
+1. 空间对齐: 伪共享
+2. 不分配空间内存
+   - `_` 匿名变量
+   - `[空slice会分配空间]`空结构体: `var v struct{}`
