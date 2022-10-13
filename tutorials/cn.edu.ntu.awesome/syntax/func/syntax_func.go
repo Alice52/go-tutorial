@@ -17,8 +17,9 @@ func ChangeString() {
 
 func FasAnonymous() {
 	// 将匿名函数保存到变量
-	add := func(x, y int) {
+	add := func(x, y int) int {
 		fmt.Println(x + y)
+		return x + y
 	}
 	add(10, 20) // 通过变量调用匿名函数
 
