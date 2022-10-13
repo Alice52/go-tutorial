@@ -1,8 +1,9 @@
 package test
 
 import (
-	"cn.edu.ntu.awesome/v0/syntax/pointer"
 	"testing"
+
+	"cn.edu.ntu.awesome/v0/syntax/pointer"
 )
 
 func TestAllocate(t *testing.T) {

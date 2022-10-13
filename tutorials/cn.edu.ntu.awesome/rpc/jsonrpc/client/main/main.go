@@ -17,7 +17,7 @@ type ArithResponse struct {
 	Rem int
 }
 
-func main() {
+func main1() {
 	// 1. create connection to rpc server
 	conn, err := jsonrpc.Dial("tcp", port)
 	if err != nil {

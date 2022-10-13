@@ -126,6 +126,29 @@
          "BeiJing",
          18,
      }
+
+     // 5. empty struct: 不占内存, 不分配空间
+     var es struct{} // es is nil
+     c := &es{} // c is not nil
+
+     // 6. 匿名结构体: 临时数据结构
+     func AnonymousStruct() {
+        var user struct {
+            Name string
+            Age  int
+        }
+        user.Name = "zack"
+        user.Age = 15
+     }
+
+     // 7. 批量定义 + 结构体标签
+     type (
+         userpw struct {
+             UserName     string `json:"username"`
+             Password     string `json:"password"`
+             RefreshToken string `json:"refreshToken"`
+         }
+     )
      ```
 
 6. 函数变量
@@ -197,57 +220,12 @@
 1. go 语言本身为了简洁性, 所以不提供对重载的支持
 2. 一般解决方法
 
-   ```go
-   // 01. 需求
-   func Handler()  {}
-   func Handler(timeOut time.Duration) {}
-   func Handler(timeOut time.Duration, retry int) {}
-
-   // 02. 解决: 不好
-   func Handler(op ...interface{}) {}
-
-   // 03. 解决: 不好
-   type Op struct {
-       TimeOut time.Duration
-       Retry   int
-   }
-   func Handler(op *Op) {}
-
-   // 04. 解决: 推荐
-   type Options struct {
-       TimeOut     time.Duration
-       RetryMaxNum int
-   }
-
-   type Option func(*Options)
-   func loadOp(option ...Option) *Options {
-       options := new(Options)
-       for _, e := range option {
-           e(options)
-       }
-       return options
-   }
-
-   func Handler(option ...Option) {
-       op := loadOp(option ...)
-   }
-
-   func main() {
-       Handler()
-       Handler(func(options *Options) { options.TimeOut = time.Millisecond})
-
-       Handler(func(options *Options) { options.RetryMaxNum = 1 })
-
-       Handler(func(options *Options) { options.RetryMaxNum = 1 }, func(options *Options) { options.TimeOut = time.Millisecond })
-   }
-   ```
-
 ## printf
 
 1. %c: 字符
 2. %s: 字符创
 3. %d: 数字
-4. %T: 类型
+4. %T: 类型 - `x.(T)` - `x.(type)`
 5. %x: 16 进制
 6. %o: 8 进制
 7. %b: 2 进制

@@ -7,6 +7,10 @@ import (
 	_struct "cn.edu.ntu.awesome/v0/syntax/struct"
 )
 
+func TestTag(t *testing.T) {
+	_struct.StructTag()
+}
+
 func TestConstructor(t *testing.T) {
 	p := _struct.NewPerson("zack", "xz", 18)
 	fmt.Printf("p: %v, type: %T\n", p, p)

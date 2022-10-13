@@ -1,6 +1,8 @@
 package oop
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type Address struct {
 	province string
@@ -78,4 +80,7 @@ func Usage() {
 
 	// 3. 匿名字段
 	AsAnonymousFile()
+
+	// 4. 重载
+	OverrideUsage()
 }

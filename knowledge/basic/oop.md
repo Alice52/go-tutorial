@@ -50,7 +50,71 @@
    }
    ```
 
-5. `{go 为了简介没有继承}`对象继承: `通过嵌套匿名结构体实现继承`
+5. `{go 为了简介没有重载}`[重载](https://juejin.cn/post/7109097301574385701):
+
+   - [不好]通过可变参数的 any 实现: 缺失约束
+   - [可以]通过定义结构体做参数实现: 参数使用复杂
+   - [推荐]Options 模式: struct(setXxx) + **可变**函数做参数
+
+   ```go
+   // 01. 需求
+   RpcMethod()
+   RpcMethod(timeout int)
+   RpcMethod(timeout int, host string)
+   RpcMethod(timeout int, host string, cluster string)
+
+   // 02. 解决: 不好(约束缺失)
+   func RpcMethod(op ...interface{}) {}
+
+   // 03. 解决: 不好
+   type RpcConfig struct {
+     timeout time.Duration
+     cluster string
+     host    string
+   }
+   func Handler(op *Op) {}
+
+   // 04. 解决: 推荐
+   type RpcConfig struct {
+     timeout time.Duration
+     cluster string
+     host    string
+   }
+
+   // func as setXx
+   func Timeout(duration time.Duration) Option {
+     return func(config *RpcConfig) {
+       config.timeout = duration
+     }
+   }
+   func Cluster(cluster string) Option {
+     return func(config *RpcConfig) {
+       config.cluster = cluster
+     }
+   }
+   func Host(host string) Option {
+     return func(config *RpcConfig) {
+       config.host = host
+     }
+   }
+
+   func RpcMethod(ops ...Option) {
+     // build args by executing args-func
+     var rpcConf RpcConfig
+     for _, op := range ops {
+       op(&rpcConf)
+     }
+     // invoke rpc method
+   }
+
+   func OverrideUsage() {
+     RpcMethod()
+     RpcMethod(Timeout(100))
+     RpcMethod(Timeout(100), Host("127.0.0.1"))
+   }
+   ```
+
+6. `{go 为了简介没有继承}`对象继承: `通过嵌套匿名结构体实现继承`
 
    ```go
    type Student struct {
@@ -76,4 +140,36 @@
    }
    ```
 
-6. 接口 & 实现
+7. 接口 & _实现_
+
+   - 接口一组接口的集合, 是一种抽象类型
+   - 实现接口的所有方法就是实现类: duck typing
+
+     ```go
+     // 1. 定义接口
+     type Flyable interface {
+       Fly()
+     }
+
+     // 2. 定义对象
+     type Bird struct {
+       Name string
+     }
+     // 4. impl check by compiler
+     var _ Flyable = &Bird{}
+
+     // 3. 对象实现接口
+     func (b *Bird) Fly() {
+       fmt.Printf("%v is flying\n", b.Name)
+     }
+
+     func test() {
+       // 5. 使用接口接受实现
+       var bird Flyable = &Bird{
+         Name: "bird",
+       }
+       bird.Fly()
+     }
+     ```
+
+8. 泛型-应用(继承)
