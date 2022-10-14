@@ -11,12 +11,14 @@ func TestGeneric(t *testing.T) {
 	var set Set[Animal] = &HashSet[Animal]{}
 
 	// 2. 向Set中添加Dog
-	dog := &Dog{
+	var dog *Dog = &Dog{
 		&Nameable{
 			Name: "dog",
 		},
 	}
 	set.Put(dog)
+	dog.Bite()
+	dog.GetName()
 
 	// 3. 向Set中添加Cat
 	var cat *Cat = &Cat{
