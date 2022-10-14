@@ -172,4 +172,63 @@
      }
      ```
 
-8. 泛型-应用(继承)
+8. 泛型(实现)-应用(继承)
+
+   - 泛型
+
+     ```go
+     // type Set[T Animal | Dog] interface {
+     type Set[T any] interface {
+       Put(val T)
+       All() []T
+     }
+
+     type HashSet[T any] struct {
+       Elements []T
+     }
+
+     func (t *HashSet[T]) Put(val T) {
+       fmt.Printf("call method of put(%v)\n", val)
+       t.Elements = append(t.Elements, val)
+     }
+
+     func (t *HashSet[T]) All() []T {
+       fmt.Printf("call method of all(): %v\n", t.Elements)
+       return t.Elements
+     }
+     ```
+
+   - 应用
+
+     ```go
+     // 1. 接口
+     type Animal interface {
+       GetName()
+     }
+
+     // 2. 接口实现
+     type Nameable struct {
+       Name string
+     }
+     func (t *Nameable) GetName() {
+       fmt.Printf("name: %v\n", t.Name)
+     }
+
+     // 3. 继承
+     type Dog struct {
+       *Nameable
+     }
+     var _ Animal = &Dog{}  // impl check for compiler
+
+     // 4. 使用
+        // 4.1 创建容器
+     var set Set[Animal] = &HashSet[Animal]{}
+        // 4.2 向Set中添加Dog(匿名属性初始化)
+     dog := &Dog{
+       &Nameable{
+         Name: "dog",
+       },
+     }
+        // 4.3 使用
+     set.Put(dog)
+     ```

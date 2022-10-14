@@ -238,3 +238,4 @@
 2. 不分配空间内存
    - `_` 匿名变量
    - `[空slice会分配空间]`空结构体: `var v struct{}`
+   - channel 的零值: `var ch chan int`
