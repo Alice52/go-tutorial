@@ -1,4 +1,4 @@
-module cn.edu.ntu.awesome/v0
+module cn.edu.ntu.awesome/v2
 
 go 1.19
 

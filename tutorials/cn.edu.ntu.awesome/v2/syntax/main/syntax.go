@@ -1,8 +1,9 @@
 package main
 
 import (
-	_func "cn.edu.ntu.awesome/v0/syntax/func"
 	"fmt"
+
+	_func "cn.edu.ntu.awesome/v2/syntax/func"
 )
 
 const pi = 3.1415926

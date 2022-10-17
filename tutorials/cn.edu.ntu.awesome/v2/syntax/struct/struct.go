@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"log"
 
-	"cn.edu.ntu.awesome/v0/syntax/common"
+	"cn.edu.ntu.awesome/v2/syntax/common"
 )
 
 // will init as fileds zero value.

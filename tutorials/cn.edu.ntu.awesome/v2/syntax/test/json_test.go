@@ -3,7 +3,7 @@ package test
 import (
 	"testing"
 
-	_json "cn.edu.ntu.awesome/v0/syntax/json"
+	_json "cn.edu.ntu.awesome/v2/syntax/json"
 )
 
 func TestDecoder(t *testing.T) {

@@ -1,8 +1,9 @@
 package test
 
 import (
-	_const "cn.edu.ntu.awesome/v0/syntax/const"
 	"testing"
+
+	_const "cn.edu.ntu.awesome/v2/syntax/const"
 )
 
 func TestIota(t *testing.T) {
