@@ -2,15 +2,25 @@ package goroutine
 
 import (
 	"fmt"
-	"sync"
+	"time"
 )
 
-// sync.Mutex
-var (
-	x  int64
-	wg sync.WaitGroup // 等待组
-	m  sync.Mutex     // 互斥锁
-)
+func Leak() {
+
+	ch := make(chan string)
+	go func() {
+		time.Sleep(3 * time.Second)
+		ch <- "job result" // 2. 此时没有读取, 导致此 goroutine 阻塞
+	}()
+
+	select {
+	case result := <-ch:
+		fmt.Println(result)
+	case <-time.After(time.Second): // 1. 命中这里, 后结束 select
+		fmt.Println("wait")
+		return
+	}
+}
 
 func Context() {
 	for i := 0; i < 5; i++ {
@@ -32,14 +42,4 @@ func Hello() {
 	defer wg.Done()
 
 	fmt.Println("Hello Goroutine")
-}
-
-// add 对全局变量x执行 5000 次加 1 操作
-func add() {
-	for i := 0; i < 5000; i++ {
-		m.Lock() // 修改x前加锁
-		x = x + 1
-		m.Unlock() // 改完解锁
-	}
-	wg.Done()
 }
