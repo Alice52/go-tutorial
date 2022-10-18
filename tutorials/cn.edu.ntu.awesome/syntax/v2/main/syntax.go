@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	_func "cn.edu.ntu.awesome/v2/syntax/func"
+	_func "cn.edu.ntu.awesome/syntax/v2/func"
 )
 
 const pi = 3.1415926

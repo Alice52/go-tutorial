@@ -6,7 +6,7 @@ import (
 	"log"
 	"testing"
 
-	_defer "cn.edu.ntu.awesome/v2/syntax/defer"
+	_defer "cn.edu.ntu.awesome/syntax/v2/defer"
 )
 
 func TestDeferRecursive(t *testing.T) {

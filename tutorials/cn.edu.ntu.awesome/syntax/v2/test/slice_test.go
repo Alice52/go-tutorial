@@ -5,9 +5,8 @@ import (
 	"testing"
 	"unsafe"
 
+	_slice "cn.edu.ntu.awesome/syntax/v2/slice"
 	"github.com/stretchr/testify/assert"
-
-	_slice "cn.edu.ntu.awesome/v2/syntax/slice"
 )
 
 func TestSize(t *testing.T) {

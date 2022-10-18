@@ -5,7 +5,7 @@ import (
 	"log"
 	"testing"
 
-	_func "cn.edu.ntu.awesome/v2/syntax/func"
+	_func "cn.edu.ntu.awesome/syntax/v2/func"
 )
 
 func init() {

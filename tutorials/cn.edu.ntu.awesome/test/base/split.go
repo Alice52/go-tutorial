@@ -1,9 +1,8 @@
-package test
+package base
 
 import "strings"
 
-// Split slices s into all substrings separated by sep and
-// returns a slice of the substrings between those separators.
+// Split 把字符串 s 按照给定的分隔符 sep 进行分割返回字符串切片
 func Split(s, sep string) (result []string) {
 
 	result = make([]string, 0, strings.Count(s, sep)+1)

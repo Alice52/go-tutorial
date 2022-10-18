@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	_array "cn.edu.ntu.awesome/v2/syntax/array"
+	_array "cn.edu.ntu.awesome/syntax/v2/array"
 )
 
 var a int = 100

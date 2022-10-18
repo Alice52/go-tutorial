@@ -3,7 +3,7 @@ package test
 import (
 	"testing"
 
-	_map "cn.edu.ntu.awesome/v2/syntax/map"
+	_map "cn.edu.ntu.awesome/syntax/v2/map"
 )
 
 func TestDeclareAndInitial(t *testing.T) {

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	_struct "cn.edu.ntu.awesome/v2/syntax/struct"
+	_struct "cn.edu.ntu.awesome/syntax/v2/struct"
 )
 
 func TestTag(t *testing.T) {
