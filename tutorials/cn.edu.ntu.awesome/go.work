@@ -1,7 +1,8 @@
 go 1.19
 
 use (
-	./syntax/v2
+	./common
 	./pkg
+	./syntax/v2
 	./test
 )

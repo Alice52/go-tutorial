@@ -5,11 +5,11 @@ import (
 	"fmt"
 	"log"
 
-	"cn.edu.ntu.awesome/syntax/v2/common"
+	"cn.edu.ntu.awesome/common/model"
 )
 
 // will init as fileds zero value.
-var person common.Person
+var person model.Person
 
 func StructTag() {
 
@@ -27,9 +27,9 @@ func StructTag() {
 	fmt.Printf("json str:%s\n", data) //json str:{"id":1,"Gender":"男"}
 }
 
-func NewPerson(name, city string, age int8) *common.Person {
+func NewPerson(name, city string, age int8) *model.Person {
 
-	return &common.Person{
+	return &model.Person{
 		Name: name,
 		City: city,
 		Age:  age,
@@ -37,8 +37,8 @@ func NewPerson(name, city string, age int8) *common.Person {
 }
 
 func StructPtr() {
-	m := make(map[string]*common.Student)
-	stus := []common.Student{
+	m := make(map[string]*model.Student)
+	stus := []model.Student{
 		{Name: "小王子", Age: 18},
 		{Name: "娜扎", Age: 23},
 		{Name: "大王八", Age: 9000},
@@ -62,13 +62,13 @@ func Initialized() {
 	log.Printf("person: %#v\n", person)
 
 	// 2. pointer
-	p := new(common.Person)
+	p := new(model.Person)
 	p.Name = "kayla"
 	p.Age = 15
 	log.Printf("type: %T, addr: %p,  person: %#v\n", p, p, *p)
 
 	// 3. initialize
-	p5 := common.Person{
+	p5 := model.Person{
 		Name: "prof.cn",
 		City: "BeiJing",
 		Age:  18,
@@ -78,7 +78,7 @@ func Initialized() {
 	log.Printf("type: %T, addr: %p,  person: %#v\n", pp, pp, *pp)
 
 	// 4. initialize and pointer
-	p6 := &common.Person{
+	p6 := &model.Person{
 		Name: "prof.cn",
 		City: "BeiJing",
 		Age:  18,

@@ -2,17 +2,6 @@ package common
 
 import "fmt"
 
-type Student struct {
-	Name string
-	Age  int
-}
-
-type Person struct {
-	Name string
-	City string
-	Age  int8
-}
-
 type (
 	Rect struct {
 		width  float64
