@@ -17,15 +17,20 @@
 
 3. 相关命令
 
-   - go test -v: `输出完整的测试结果`
-   - go test -run Reg: `运行函数名匹配的`
-   - `go test -bench=.`: 运行基准测试
+   - go test ./... -v: `./...`(该目录及子目录) + `输出完整的测试结果`
+   - go test -run REG: `运行函数名匹配的`
+   - `go test -bench=REG -benchmem`: 运行基准测试
    - go test -short: 跳过测试
    - go test -cover
    - go test -cover -coverprofile=c.out: html 打开覆盖说明
    - `gotests -all -w split.go`: 生成测试代码(只需要填充测试用例)
 
-4. 其他
+4. 打桩(stub)
+
+   - 屏蔽: 不想在单元测试用引入数据库连接等重资源
+   - 补齐: 依赖的上下游函数或方法还未实现
+
+5. 其他
 
    - 回归测试
    - 跳过指定测试
@@ -34,3 +39,34 @@
    - 测试覆盖率
    - **表格驱动测试**: 是编写更清晰测试的一种方式和视角
    - 生成测试用例: `go get xxx/gotests` + `gotests -all -w split.go`
+
+## Best Pratice
+
+1. 单元测试
+
+   - goconvey: webui &
+
+2. 基准测试
+
+   - 想办法是否能调用单元测试
+
+3. 示例函数
+4. 工具
+
+   - net: httptest{server} + **gock{client}**
+   - redis: miniredis
+   - mysql: `go-sqlmock{不真实存储数据}`
+   - 打桩: monkey
+
+5. 相关原则
+
+   - 剔除干扰因素
+   - 接口抽象进行解耦
+   - 依赖注入代替隐式依赖: 减少使用全局变量
+   - dpp: solid
+
+---
+
+## issues
+
+1. 如何在基准测试中调用单元测试
