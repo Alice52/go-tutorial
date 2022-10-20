@@ -24,6 +24,8 @@
    - go test -cover
    - go test -cover -coverprofile=c.out: html 打开覆盖说明
    - `gotests -all -w split.go`: 生成测试代码(只需要填充测试用例)
+   - `go test -run=REG -v -gcflags=-l`: 禁止内联优化
+   - `goconvey`: Web-UI
 
 4. 打桩(stub)
 
@@ -56,13 +58,14 @@
    - net: httptest{server} + **gock{client}**
    - redis: miniredis
    - mysql: `go-sqlmock{不真实存储数据}`
-   - 打桩: monkey
+   - 打桩: monkey || gostub(全局变量打桩)
+   - 接口: gomock#mockgen
 
 5. 相关原则
 
-   - 剔除干扰因素
-   - 接口抽象进行解耦
-   - 依赖注入代替隐式依赖: 减少使用全局变量
+   - 剔除干扰因素: 如内置的时间函数等
+   - 接口抽象进行解耦: 函数变小 + 面向接口{管理接口的对象}
+   - 依赖注入代替隐式依赖: 减少使用全局变量, 多使用入参(少在内部使用默认变量/方法)
    - dpp: solid
 
 ---
