@@ -46,7 +46,8 @@
 
 1. 单元测试
 
-   - goconvey: webui &
+   - goconvey: webui
+   - 内容: 组测试 + 子测试 + 并发 + 断言
 
 2. 基准测试
 
@@ -58,8 +59,8 @@
    - net: httptest{server} + **gock{client}**
    - redis: miniredis
    - mysql: `go-sqlmock{不真实存储数据}`
-   - 打桩: monkey || gostub(全局变量打桩)
-   - 接口: gomock#mockgen
+   - 打桩: monkey || _gostub(全局变量打桩)_
+   - 接口: monkey || _gomock#mockgen_
 
 5. 相关原则
 
