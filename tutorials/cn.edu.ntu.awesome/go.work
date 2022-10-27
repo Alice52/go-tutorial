@@ -5,4 +5,5 @@ use (
 	./pkg
 	./syntax/v2
 	./test
+	./web/gin
 )
