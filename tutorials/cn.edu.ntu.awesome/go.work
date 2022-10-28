@@ -6,4 +6,5 @@ use (
 	./syntax/v2
 	./test
 	./web/gin
+	./web/gin_practice
 )

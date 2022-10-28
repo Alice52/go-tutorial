@@ -4,6 +4,9 @@ import (
 	"time"
 )
 
+// @see gin_practice/routers.go
+type Option func(config *RpcConfig)
+
 type RpcConfig struct {
 	timeout time.Duration
 	cluster string
@@ -29,13 +32,11 @@ func Host(host string) Option {
 	}
 }
 
-type Option func(config *RpcConfig)
-
 func RpcMethod(ops ...Option) {
 	// build args by executing args-func
 	var rpcConf RpcConfig
-	for _, op := range ops {
-		op(&rpcConf)
+	for _, opFunc := range ops {
+		opFunc(&rpcConf)
 	}
 	// invoke rpc method
 }

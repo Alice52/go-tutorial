@@ -38,3 +38,41 @@
          username := c.Param("username")
    }
    ```
+
+## 路由拆分注册实践
+
+1. ~~基本的路由注册~~
+
+   - 直接写在 main.go 中
+
+2. 路由拆分成**单独文件或包**
+
+   - 将路由剥离到 routers.go
+   - 并对外暴露初始化方法
+
+3. 路由拆分成多个文件
+
+   - 按照业务对拆分为多个路由文件
+   - 并对外暴露初始化方法
+
+4. **路由拆分到不同的 APP**
+
+   - struct
+
+     ```go
+     project
+     ├── app
+     │   ├── blog
+     │   │   ├── handler.go
+     │   │   └── router.go
+     │   └── shop
+     │       ├── handler.go
+     │       └── router.go
+     ├── go.mod
+     ├── go.sum
+     ├── main.go
+     └── routers
+        └── routers.go
+     ```
+
+   - 在 routers/routers.go 内使用 Options 模式注册不同业务的路由

@@ -45,14 +45,14 @@ func main() {
 
 func router1() http.Handler {
 	e := gin.Default()
-	e.GET("/ping", func(c *gin.Context) {})
+	e.GET("/ping", func(c *gin.Context) { c.String(200, "01") })
 
 	return e
 }
 
 func router2() http.Handler {
 	e := gin.Default()
-	e.GET("/ping", func(c *gin.Context) {})
+	e.GET("/ping", func(c *gin.Context) { c.String(200, "02") })
 
 	return e
 }

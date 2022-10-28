@@ -23,24 +23,12 @@ func main() {
 			"msg": "pong",
 		})
 	})
-	// 2.2 complex
-	router.POST("/login", func(c *gin.Context) {
-		var login Login
-		// ShouldBind() 会根据请求的Content-Type自行选择绑定器
-		if err := c.ShouldBind(&login); err == nil {
-			fmt.Printf("login info:%#v\n", login)
-			c.JSON(http.StatusOK, gin.H{
-				"user":     login.User,
-				"password": login.Password,
-			})
-		} else {
-			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		}
-	})
+	// 2.2 complex: 函数做参数
+	router.Any("/login", complexReq)
 
 	// 3. 重定向
 	// 3.1 HTTP
-	router.GET("/test", func(c *gin.Context) {
+	router.GET("/redirect", func(c *gin.Context) {
 		c.Redirect(http.StatusMovedPermanently, "http://www.sogo.com/")
 	})
 	// 3.2 路由
@@ -52,4 +40,18 @@ func main() {
 
 	// Listen and serve on 0.0.0.0:8080
 	router.Run(":8083")
+}
+
+func complexReq(c *gin.Context) {
+	var login Login
+	// ShouldBind() 会根据请求的Content-Type自行选择绑定器
+	if err := c.ShouldBind(&login); err == nil {
+		fmt.Printf("login info:%#v\n", login)
+		c.JSON(http.StatusOK, gin.H{
+			"user":     login.User,
+			"password": login.Password,
+		})
+	} else {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+	}
 }
