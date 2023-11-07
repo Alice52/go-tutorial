@@ -39,7 +39,7 @@ jobs:
           zip main.zip main
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: main
           path: ${{ github.workspace }}/**/main.zip
