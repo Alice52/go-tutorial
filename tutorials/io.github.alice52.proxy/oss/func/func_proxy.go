@@ -3,6 +3,7 @@ package _func
 import (
 	"context"
 	"encoding/json"
+	"github.com/aliyun/fc-runtime-go-sdk/fccontext"
 	"io.github.alice52.proxy/oss/component"
 	"io.github.alice52.proxy/oss/constants"
 	"io.github.alice52.proxy/oss/model"
@@ -16,6 +17,10 @@ import (
 
 // HandleHttpRequest check env, params and signature temporary image url for  by oss bucket
 func HandleHttpRequest(ctx context.Context, w http.ResponseWriter, req *http.Request) error {
+
+	lc, _ := fccontext.FromContext(ctx)
+	fmt.Printf("context: %#v\n", lc)
+	fmt.Printf("req: %#v\n", req)
 
 	w.WriteHeader(http.StatusOK)
 	w.Header().Set("Content-Type", "application/json")
