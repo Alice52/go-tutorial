@@ -3,7 +3,7 @@ package test
 import (
 	"encoding/json"
 	"fmt"
-	"io.github.alice52.proxy/oss/http"
+	"github.com/alice52/proxy/common/http"
 	"testing"
 )
 

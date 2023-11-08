@@ -2,8 +2,8 @@ package test
 
 import (
 	"fmt"
+	"github.com/alice52/proxy/common/constants"
 	"github.com/aliyun/aliyun-oss-go-sdk/oss"
-	"io.github.alice52.proxy/oss/constants"
 	"os"
 	"testing"
 )

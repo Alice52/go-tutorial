@@ -1,4 +1,4 @@
-module io.github.alice52.proxy/oss
+module github.com/alice52/proxy/oss
 
 go 1.20
 

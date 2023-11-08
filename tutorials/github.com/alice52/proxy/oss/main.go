@@ -1,8 +1,8 @@
 package main
 
 import (
+	_func "github.com/alice52/proxy/oss/func"
 	"github.com/aliyun/fc-runtime-go-sdk/fc"
-	_func "io.github.alice52.proxy/oss/func"
 )
 
 type Person struct {

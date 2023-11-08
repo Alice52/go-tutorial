@@ -1,9 +1,27 @@
 package component
 
 import (
+	"fmt"
+	"github.com/alice52/proxy/common/constants"
 	"github.com/aliyun/aliyun-oss-go-sdk/oss"
-	"io.github.alice52.proxy/oss/constants"
 )
+
+func BuildOssRawClient(ak, sk, securityToken string) (*oss.Client, error) {
+
+	if ak == "" || sk == "" || securityToken == "" {
+		return nil, fmt.Errorf("ak or sk or securityToken is empty!")
+	}
+
+	provider := stsCredentialsProvider{
+		&stsCredentials{
+			AccessKeyId:     ak,
+			AccessKeySecret: sk,
+			SecurityToken:   securityToken,
+		},
+	}
+
+	return oss.New(constants.Endpoint, ak, sk, oss.SetCredentialsProvider(&provider))
+}
 
 // BuildOssClient build oss client
 func BuildOssClient(ak, sk string) (*oss.Client, error) {
