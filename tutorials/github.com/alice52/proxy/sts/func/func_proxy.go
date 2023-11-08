@@ -18,10 +18,11 @@ func HandleHttpRequest(ctx context.Context, w http.ResponseWriter, req *http.Req
 	w.Header().Set("Content-Type", "application/json")
 
 	// 1. check oss env and request params, and respond error if invalid
-	//ak, sk, arn, objectName, valid := checkOrRespondError(w, req)
-	//if !valid {
-	//	return nil
-	//}
+	ak, sk, arn, objectName, valid := checkOrRespondError(w, req)
+	if !valid {
+		return nil
+	}
+	fmt.Println(ak, sk, arn, objectName, valid)
 
 	// 2. get sts
 

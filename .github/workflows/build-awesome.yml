@@ -1,0 +1,41 @@
+name: Build Awesome Tutorials
+
+on:
+  workflow_dispatch:
+  release:
+    types: [released]
+  push:
+    branches:
+      - master
+    paths:
+      - '**/tutorials/github.com/alice52/awesome/**'
+      - '.github/workflows/build-awesome.yml'
+  pull_request:
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ["windows-latest", "ubuntu-latest", "macOS-latest"]
+        go: ["1.20.x", "1.21.x"]
+    runs-on: ${{ matrix.os }}
+    if: "!contains(github.event.head_commit.message, 'ci skip')"
+    env:
+      PROJECT_PREFIX: tutorials/github.com/alice52/awesome
+    steps:
+      - name: Export Global Var
+        run: |
+          echo "PROJECT_HOME=$PWD" >> $GITHUB_ENV
+
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - uses: WillAbides/setup-go-faster@v1.12.0
+        with:
+          go-version: ${{ matrix.go }}
+
+      - name: Build Awesome Tutorials
+        run: |
+          cd $PROJECT_HOME/$PROJECT_PREFIX
+          go list -f '{{.Dir}}/...' -m | xargs go build #-o bin/

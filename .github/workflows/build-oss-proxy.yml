@@ -1,0 +1,64 @@
+name: Build Oss Proxy Serverless Func
+
+on:
+  workflow_dispatch:
+  release:
+    types: [released]
+  push:
+    branches:
+      - master
+    paths:
+      - '**/tutorials/github.com/alice52/proxy/**'
+      - '.github/workflows/build-oss-proxy.yml'
+  pull_request:
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ["ubuntu-latest", "macOS-latest"]
+        go: ["1.20.x", "1.21.x"]
+    runs-on: ${{ matrix.os }}
+    if: "!contains(github.event.head_commit.message, 'ci skip')"
+    env:
+      PROJECT_PREFIX: tutorials/github.com/alice52/proxy
+    steps:
+      - name: Export Global Var
+        run: |
+          echo "PROJECT_HOME=$PWD" >> $GITHUB_ENV
+
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - uses: WillAbides/setup-go-faster@v1.12.0
+        with:
+          go-version: ${{ matrix.go }}
+
+      - name: Build Oss Proxy Serverless Func
+        run: |
+          PROJECT_NAME=oss
+          cd $PROJECT_HOME/$PROJECT_PREFIX/$PROJECT_NAME
+          go build -o main
+          zip main.zip main
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ matrix.os }}-${{ matrix.go }}-main
+          path: ${{ github.workspace }}/**/main.zip
+          retention-days: 7
+
+      - name: Build Oss Proxy(sts) Serverless Func
+        run: |
+          PROJECT_NAME=sts
+          cd $PROJECT_HOME/$PROJECT_PREFIX/$PROJECT_NAME
+          go build -o main
+          zip mainsts.zip main
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ matrix.os }}-${{ matrix.go }}-mainsts
+          path: ${{ github.workspace }}/**/mainsts.zip
+          retention-days: 7
