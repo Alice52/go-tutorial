@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"net/http"
 	"net/http/httputil"
 )
@@ -55,7 +54,7 @@ func DoReq(client *http.Client, method, url string, body []byte) ([]byte, error)
 		}
 	}(resp.Body)
 
-	respb, err := ioutil.ReadAll(resp.Body)
+	respb, err := io.ReadAll(resp.Body)
 	if err != nil {
 		fmt.Println("Error reading response body:", err)
 		return nil, err

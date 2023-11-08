@@ -3,6 +3,7 @@ package _func
 import (
 	"context"
 	"encoding/json"
+	"io.github.alice52.proxy/oss/component"
 	"io.github.alice52.proxy/oss/constants"
 	"io.github.alice52.proxy/oss/model"
 	"strings"
@@ -13,40 +14,28 @@ import (
 	"os"
 )
 
+// HandleHttpRequest check env, params and signature temporary image url for  by oss bucket
 func HandleHttpRequest(ctx context.Context, w http.ResponseWriter, req *http.Request) error {
 
 	w.WriteHeader(http.StatusOK)
 	w.Header().Set("Content-Type", "application/json")
 
-	// 1. check oss env
-	ak, sk, err := checkOssEnv()
-	if err != nil {
-		return response(w, err)
+	// 1. check oss env and request params
+	ak, sk, objectName, success := checkEnvAndReq(w, req)
+	if !success {
+		return nil
 	}
 
-	// 2. check req params
-	objectName, err := checkReqAndParseObjectName(req)
-	if err != nil {
-		return response(w, err)
+	// 2. build oss bucket instance
+	bucket, err := component.BuildOssBucket(ak, sk)
+	if err != nil && response(w, err) {
+		return nil
 	}
 
-	// 3. build oss client
-	provider, err := oss.NewEnvironmentVariableCredentialsProvider()
-	client, err := oss.New(constants.Endpoint, ak, sk, oss.SetCredentialsProvider(&provider))
-	if err != nil {
-		return response(w, err)
-	}
-
-	// 4. build oss bucket
-	bucket, err := client.Bucket(constants.BucketName)
-	if err != nil {
-		return response(w, err)
-	}
-
-	// 5. do signature for temporary
+	// 3. do signature for temporary
 	signedUrl, err := bucket.SignURL(objectName, oss.HTTPGet, 5*60)
-	if err != nil {
-		return response(w, err)
+	if err != nil && response(w, err) {
+		return nil
 	}
 
 	return json.NewEncoder(w).Encode(&model.SignImage{
@@ -54,10 +43,32 @@ func HandleHttpRequest(ctx context.Context, w http.ResponseWriter, req *http.Req
 	})
 }
 
-func response(w http.ResponseWriter, err error) error {
-	return json.NewEncoder(w).Encode(&model.ErrorResult{
+func checkEnvAndReq(w http.ResponseWriter, req *http.Request) (string, string, string, bool) {
+	// 1. check oss env
+	ak, sk, err := checkOssEnv()
+	if err != nil && response(w, err) {
+		return "", "", "", false
+	}
+
+	// 2. check req params
+	objectName, err := checkReqAndParseObjectName(req)
+	if err != nil && response(w, err) {
+		return "", "", "", false
+	}
+
+	return ak, sk, objectName, true
+}
+
+func response(w http.ResponseWriter, err error) bool {
+	err = json.NewEncoder(w).Encode(&model.ErrorResult{
 		Msg: err.Error(),
 	})
+
+	if err != nil {
+		fmt.Println("Error responding error response")
+	}
+
+	return true
 }
 
 func checkReqAndParseObjectName(req *http.Request) (string, error) {
