@@ -3,7 +3,7 @@ package test
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/alice52/proxy/common/http"
+	"github.com/alice52/proxy/common/request"
 	"testing"
 )
 
@@ -24,7 +24,7 @@ func TestHttpReq(t *testing.T) {
 		"key2": "value2",
 	})
 
-	resp, _ := http.DoReq(nil, "POST", "https://ug.baidu.com/mcp/pc/pcsearch", body)
+	resp, _ := request.DoReq(nil, "POST", "https://ug.baidu.com/mcp/pc/pcsearch", body)
 	var rr respResult
 	err := json.Unmarshal(resp, &rr)
 	if err != nil {
