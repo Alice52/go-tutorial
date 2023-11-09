@@ -203,9 +203,9 @@
    ```go
    switch value := v.(type) {
    case string:
-   	fmt.Printf("string type, and value is %s", value)
+      fmt.Printf("string type, and value is %s", value)
    default:
-   	fmt.Println(value)
+      fmt.Println(value)
    }
    ```
 

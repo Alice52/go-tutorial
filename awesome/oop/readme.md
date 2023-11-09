@@ -114,7 +114,7 @@
    }
    ```
 
-6. `{go 为了简介没有继承}`对象继承: `通过嵌套匿名结构体实现继承`
+6. `{go 为了简介没有继承}`对象继承: `通过嵌套(组合)匿名结构体实现继承`
 
    ```go
    type Student struct {
@@ -151,17 +151,16 @@
        Fly()
      }
 
-     // 2. 定义对象
+     // 2. 定义对象 & 对象实现接口
      type Bird struct {
        Name string
      }
-     // 4. impl check by compiler
-     var _ Flyable = &Bird{}
-
-     // 3. 对象实现接口
      func (b *Bird) Fly() {
        fmt.Printf("%v is flying\n", b.Name)
      }
+
+     // 4. compiler checker
+     var _ Flyable = &Bird{}
 
      func test() {
        // 5. 使用接口接受实现
@@ -186,12 +185,10 @@
      type HashSet[T any] struct {
        Elements []T
      }
-
      func (t *HashSet[T]) Put(val T) {
        fmt.Printf("call method of put(%v)\n", val)
        t.Elements = append(t.Elements, val)
      }
-
      func (t *HashSet[T]) All() []T {
        fmt.Printf("call method of all(): %v\n", t.Elements)
        return t.Elements

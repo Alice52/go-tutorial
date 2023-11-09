@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/aliyun-oss-go-sdk/oss"
 )
 
+// Deprecated: BuildOssRawClient
 func BuildOssRawClient(ak, sk, securityToken string) (*oss.Client, error) {
 
 	if ak == "" || sk == "" || securityToken == "" {

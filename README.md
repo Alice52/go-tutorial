@@ -2,6 +2,11 @@
 
 1. This repository records golang learning process
 
+## blemish
+
+1. without syntax annotation
+2. without aop/validate
+
 ## core point
 
 1. func can be use as type, arg, var, return
@@ -34,3 +39,28 @@
      calc(10, 20, add)
    }
    ```
+
+2. oop & option 模式
+
+   ```go
+   // 1. 接口
+   type Animal interface {
+     GetName()
+   }
+
+   // 2. 接口实现
+   type Nameable struct {
+     Name string
+   }
+   func (t *Nameable) GetName() {
+     fmt.Printf("name: %v\n", t.Name)
+   }
+
+   // 3. 继承
+   type Dog struct {
+     *Nameable
+   }
+   var _ Animal = &Dog{}  // impl check for compiler
+   ```
+
+3. generic
