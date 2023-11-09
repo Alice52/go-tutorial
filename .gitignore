@@ -5,7 +5,7 @@
 !*.md
 !LICENSE
 !.gitkeep
-!*/static/**
+!static/**
 !*/
 !go.work
 !*.sh
