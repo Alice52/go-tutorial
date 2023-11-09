@@ -51,7 +51,7 @@ func CheckOrRespondError(w http.ResponseWriter, req *http.Request) (string, stri
 
 	// 2. check req params
 	objectName, err := checker.CheckReqAndParseObjectName(req)
-	if err != nil && resp.RespondError(w, err) {
+	if err != nil && resp.RespondErrorWithStatus(http.StatusBadRequest, w, err) {
 		return "", "", "", false
 	}
 

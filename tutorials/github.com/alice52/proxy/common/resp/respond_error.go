@@ -7,7 +7,8 @@ import (
 	"net/http"
 )
 
-func RespondError(w http.ResponseWriter, err error) bool {
+func RespondErrorWithStatus(status int, w http.ResponseWriter, err error) bool {
+	w.WriteHeader(status)
 	err = json.NewEncoder(w).Encode(&model.ErrorResult{
 		Msg: err.Error(),
 	})
@@ -17,4 +18,9 @@ func RespondError(w http.ResponseWriter, err error) bool {
 	}
 
 	return true
+}
+
+func RespondError(w http.ResponseWriter, err error) bool {
+
+	return RespondErrorWithStatus(http.StatusInternalServerError, w, err)
 }
