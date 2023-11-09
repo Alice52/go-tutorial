@@ -6,6 +6,7 @@
 
 1. without syntax annotation
 2. without aop/validate
+3. without named function and default args
 
 ## core point
 

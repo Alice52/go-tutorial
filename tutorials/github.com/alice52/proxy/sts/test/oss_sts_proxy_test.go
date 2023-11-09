@@ -13,8 +13,8 @@ import (
 func TestOssProxy(t *testing.T) {
 	rak := os.Getenv("OSS_ACCESS_KEY_ID")
 	rsk := os.Getenv("OSS_ACCESS_KEY_SECRET")
-	rst := os.Getenv("OSS_ARN_KEY")
-	role, err := component.GetAssumeRole(rak, rsk, rst)
+	arn := os.Getenv("OSS_ARN_KEY")
+	role, err := component.GetAssumeRole(rak, rsk, arn)
 	if err != nil {
 		fmt.Printf("%v", err)
 	}
@@ -23,7 +23,7 @@ func TestOssProxy(t *testing.T) {
 	sk := tea.StringValue(role.Body.Credentials.AccessKeySecret)
 	st := tea.StringValue(role.Body.Credentials.SecurityToken)
 
-	client, err := component.BuildOssRawClient(ak, sk, st)
+	client, err := component.BuildOssStsClient(ak, sk, st)
 	if err != nil {
 		return
 	}

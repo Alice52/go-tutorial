@@ -2,10 +2,14 @@ package _func
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
+	"github.com/alice52/proxy/common/component"
 	"github.com/alice52/proxy/common/log"
 	"github.com/alice52/proxy/common/resp"
 	_func "github.com/alice52/proxy/oss/func"
+	"github.com/alice52/proxy/oss/model"
+	"github.com/aliyun/aliyun-oss-go-sdk/oss"
 	"net/http"
 	"os"
 )
@@ -24,9 +28,21 @@ func HandleHttpRequest(ctx context.Context, w http.ResponseWriter, req *http.Req
 	}
 	fmt.Println(ak, sk, arn, objectName, valid)
 
-	// 2. get sts
+	// 2. get sts bucket
+	bucket, err := component.BuildOssStsBucket(ak, sk, arn)
+	if err != nil && resp.RespondError(w, err) {
+		return nil
+	}
 
-	return nil
+	// 3. do signature for temporary
+	signedUrl, err := bucket.SignURL(objectName, oss.HTTPGet, 5*60)
+	if err != nil && resp.RespondError(w, err) {
+		return nil
+	}
+
+	return json.NewEncoder(w).Encode(&model.SignImage{
+		Url: signedUrl,
+	})
 }
 
 func checkOrRespondError(w http.ResponseWriter, req *http.Request) (string, string, string, string, bool) {
@@ -41,5 +57,5 @@ func checkOrRespondError(w http.ResponseWriter, req *http.Request) (string, stri
 		return "", "", "", "", false
 	}
 
-	return ak, sk, arn, objectName, valid
+	return ak, sk, arn, objectName, true
 }
