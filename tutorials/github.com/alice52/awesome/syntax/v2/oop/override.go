@@ -19,13 +19,11 @@ func Timeout(duration time.Duration) Option {
 		config.timeout = duration
 	}
 }
-
 func Cluster(cluster string) Option {
 	return func(config *RpcConfig) {
 		config.cluster = cluster
 	}
 }
-
 func Host(host string) Option {
 	return func(config *RpcConfig) {
 		config.host = host

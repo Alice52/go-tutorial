@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"github.com/alibabacloud-go/tea/tea"
 	"github.com/alice52/proxy/common/constants"
-	"github.com/alice52/proxy/common/oss"
+	_oss "github.com/alice52/proxy/common/oss"
 	"github.com/aliyun/aliyun-oss-go-sdk/oss"
 	"os"
 	"testing"
@@ -14,7 +14,7 @@ func TestOssProxy(t *testing.T) {
 	rak := os.Getenv("OSS_ACCESS_KEY_ID")
 	rsk := os.Getenv("OSS_ACCESS_KEY_SECRET")
 	arn := os.Getenv("OSS_ARN_KEY")
-	role, err := oss.GetAssumeRole(rak, rsk, arn)
+	role, err := _oss.GetAssumeRole(rak, rsk, arn)
 	if err != nil {
 		fmt.Printf("%v", err)
 	}
@@ -23,7 +23,7 @@ func TestOssProxy(t *testing.T) {
 	sk := tea.StringValue(role.Body.Credentials.AccessKeySecret)
 	st := tea.StringValue(role.Body.Credentials.SecurityToken)
 
-	client, err := oss.BuildOssStsClient(ak, sk, st)
+	client, err := _oss.BuildOssStsClient(ak, sk, st)
 	if err != nil {
 		return
 	}
