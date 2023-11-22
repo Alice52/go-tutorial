@@ -1,12 +1,14 @@
 ## go-tutorial
 
 1. This repository records golang learning process
+2. pros: 简洁 & 高效
 
 ## blemish
 
 1. without syntax annotation
 2. without aop/validate
 3. without named function and default args
+4. without agent enhance
 
 ## core point
 
