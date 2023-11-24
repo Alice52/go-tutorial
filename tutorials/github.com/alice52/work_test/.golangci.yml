@@ -1,0 +1,35 @@
+linters:
+  enable:
+    - nilerr
+    - goconst
+    - goprintffuncname
+    - importas
+    - predeclared
+    - revive
+    - rowserrcheck
+    - tenv
+    - testpackage
+    - tparallel
+    - unconvert
+    - unparam
+    - wastedassign
+    - bodyclose # from krts
+    - dogsled
+    - durationcheck
+    - exportloopref
+    - govet
+    - gosimple
+    - gofmt
+    - gofumpt
+    - errcheck
+    - goimports
+    - gomnd
+    - gocyclo
+    - ineffassign
+    - lll
+    - prealloc
+    - staticcheck
+    - typecheck
+    - unused
+    - whitespace
+    - exhaustive
