@@ -44,7 +44,7 @@ jobs:
           ls -la
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.os }}-${{ matrix.go }}-Artifact
           path: ${{ github.workspace }}/**/bin/*
