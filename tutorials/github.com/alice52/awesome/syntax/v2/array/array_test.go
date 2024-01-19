@@ -1,10 +1,8 @@
-package test
+package array
 
 import (
 	"fmt"
 	"testing"
-
-	_array "github.com/alice52/awesome/syntax/v2/array"
 )
 
 var a int = 100
@@ -50,15 +48,15 @@ func init() {
 }
 
 func TestInit(t *testing.T) {
-	_array.InitArray()
+	InitArray()
 }
 
 func TestArrayValues(t *testing.T) {
 
-	_array.ArrayValues()
+	ArrayValues()
 }
 
 func TestType(t *testing.T) {
 
-	_array.DistinctType()
+	DistinctType()
 }

@@ -21,3 +21,6 @@ func NewEnum(enum Enum) (Enum, error) {
 
 	return enum, nil
 }
+
+func Value(enum Enum) {
+}

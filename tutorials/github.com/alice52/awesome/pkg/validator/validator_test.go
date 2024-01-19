@@ -24,7 +24,7 @@ import (
 
 func TestStructTag(t *testing.T) {
 	type Person struct {
-		Name  string `json:"name" validate:"required,email"`
+		Name  string `json:"name" validate:"required,email"`  // gin 里是使用  binding 关键字
 		Email string `json:"email" validate:"required,email"`
 		Age   int    `json:"age" validate:"gte=18,lte=60"`
 	}

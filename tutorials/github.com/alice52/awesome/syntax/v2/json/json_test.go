@@ -1,29 +1,27 @@
-package test
+package json
 
 import (
 	"testing"
-
-	_json "github.com/alice52/awesome/syntax/v2/json"
 )
 
 func TestRawMessageDemo(t *testing.T) {
-	_json.RawMessageDemo()
+	RawMessageDemo()
 }
 func TestParseDate(t *testing.T) {
 
-	_json.ParseDate()
+	ParseDate()
 }
 
 func TestDecoder(t *testing.T) {
-	_json.JsonDecoder()
+	JsonDecoder()
 }
 
 func TestSerialize(t *testing.T) {
 
-	_json.Serialize()
+	Serialize()
 }
 
 func TestDeSerialize(t *testing.T) {
 
-	_json.DeSerialize()
+	DeSerialize()
 }

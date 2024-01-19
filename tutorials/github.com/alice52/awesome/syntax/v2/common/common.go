@@ -28,13 +28,14 @@ func CreateObj() {
 // *取变量的值
 // &取变量的地址
 func Operator() {
-	rect := &Rect{100, 100}
+	var rect *Rect = &Rect{100, 100}
 
 	// 取到Rect类型对象的地址
 	fmt.Println(rect) // &{100 100}
-	// 查看这个指针变量的地址
-	fmt.Println(&rect) // 0xc000098028
-	fmt.Println(*rect) // {100 100}
+	// 查看这个指针变量(存储)指向的地址
+	fmt.Println(&rect)        // 0xc000098028
+	fmt.Printf("%p\n", &rect) // 0xc000098028
+	fmt.Println(*rect)        // {100 100}
 
 	var r *Rect = rect
 	// *表示变量指针类型

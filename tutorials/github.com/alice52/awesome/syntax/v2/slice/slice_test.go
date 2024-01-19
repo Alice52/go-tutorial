@@ -1,11 +1,10 @@
-package test
+package slice
 
 import (
 	"log"
 	"testing"
 	"unsafe"
 
-	_slice "github.com/alice52/awesome/syntax/v2/slice"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -24,7 +23,7 @@ func TestSize(t *testing.T) {
 }
 
 func TestSliceCreate(t *testing.T) {
-	slice1 := _slice.CreateSlice()
+	slice1 := CreateSlice()
 	log.Print(slice1)
 
 	sliceCopy := slice1
@@ -36,5 +35,5 @@ func TestSliceCreate(t *testing.T) {
 }
 
 func TestSliceInits(t *testing.T) {
-	_slice.InitSlices()
+	InitSlices()
 }
