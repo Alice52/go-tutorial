@@ -36,11 +36,11 @@ func TestChanEvent1(t *testing.T) {
 	event.FireAsync(event.New("app.evt1", event.M{"arg0": "val2"}))
 }
 
-// todo: 不符合预期
 func TestChanEvent2(t *testing.T) {
 	// 1. 定义事件管理器
 	var em = event.NewManager("default", func(o *event.Options) {
 		o.ConsumerNum = 10
+		o.EnableLock = false // 加锁后只有一个 routine 在执行
 	})
 	defer em.CloseWait()
 
