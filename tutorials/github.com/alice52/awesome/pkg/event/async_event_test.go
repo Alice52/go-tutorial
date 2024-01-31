@@ -13,6 +13,7 @@ func TestChanEvent(t *testing.T) {
 
 	// 1. 注册事件监听器
 	event.On("app.evt1", listener, event.Normal)
+	event.On("app.evt1", listener, event.Normal)
 
 	// 2. 触发事件(异步)
 	event.Async("app.evt1", event.M{"arg0": "val0", "arg1": "val1"})
@@ -36,7 +37,8 @@ func TestChanEvent1(t *testing.T) {
 	event.FireAsync(event.New("app.evt1", event.M{"arg0": "val2"}))
 }
 
-func TestChanEvent2(t *testing.T) {
+// TestConcurrentEventSync
+func TestConcurrentEventAsync(t *testing.T) {
 	// 1. 定义事件管理器
 	var em = event.NewManager("default", func(o *event.Options) {
 		o.ConsumerNum = 10
@@ -51,11 +53,48 @@ func TestChanEvent2(t *testing.T) {
 		return nil
 	}
 
+	//// 3. 注册事件监听器
+	//em.On("app.evt1", listener, event.Normal)
+	//em.On("app.*", listener, event.Normal)
+	//
+	//// 4. 触发事件(异步)
+	//for i := 0; i < 1; i++ {
+	//	em.FireAsync(event.New("app.evt1", event.M{"arg0": "val2"}))
+	//}
+
+	em.On("app*", listener, event.Normal)
+	em.On("app.user.register", listener, event.Normal)
+
+	// 4. 触发事件(异步)
+	for i := 0; i < 1; i++ {
+		em.FireAsync(event.New("app.user.register", event.M{"arg0": "val2"}))
+	}
+
+	fmt.Println("publish event finished!")
+}
+
+// TestConcurrentEventAsync
+// Panic 如果不手动 recovery 的话程序会退出
+func TestConcurrentEventAsyncWithPanic(t *testing.T) {
+	// 1. 定义事件管理器
+	var em = event.NewManager("default", func(o *event.Options) {
+		o.ConsumerNum = 10
+		o.EnableLock = false // 加锁后只有一个 routine 在执行
+	})
+	defer em.CloseWait()
+
+	// 2. 定义事件处理器
+	var listener event.ListenerFunc = func(e event.Event) error {
+		fmt.Printf("handle event: %s\n", e.Name())
+		panic("manual panic")
+	}
+
 	// 3. 注册事件监听器
+	em.On("app.evt1", listener, event.Normal)
 	em.On("app.evt1", listener, event.Normal)
 
 	// 4. 触发事件(异步)
-	for i := 0; i < 100; i++ {
+	for i := 0; i < 1; i++ {
 		em.FireAsync(event.New("app.evt1", event.M{"arg0": "val2"}))
 	}
 

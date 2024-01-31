@@ -62,7 +62,7 @@ func RawMessageDemo() {
 		return
 	}
 	fmt.Printf("msg:%#v\n", msg)
-	// msg:main.sendMsg{User:"q1mi", Msg:"永远不要高估自己"}
+	// msg:tracing.sendMsg{User:"q1mi", Msg:"永远不要高估自己"}
 }
 
 // JSON序列化
