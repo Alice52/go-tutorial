@@ -9,7 +9,7 @@ require (
 	github.com/gookit/event v1.1.1
 	github.com/robfig/cron/v3 v3.0.1
 	github.com/sourcegraph/conc v0.3.0
-	go.uber.org/zap v1.26.0
+	go.uber.org/zap v1.27.0
 	gopkg.in/natefinch/lumberjack.v2 v2.2.1
 )
 
