@@ -1,0 +1,30 @@
+host: 127.0.0.1:8083
+info:
+  contact:
+    email: https://github.com/alice52
+    name: alice52
+    url: https://github.com/alice52
+  description: This is a sample server celler server.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: https://github.com/alice52
+  title: Swagger Example API
+  version: "1.0"
+paths:
+  /post:
+    get:
+      consumes:
+      - application/json
+      description: do post
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: do api
+      tags:
+      - example
+swagger: "2.0"

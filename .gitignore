@@ -10,4 +10,6 @@
 !go.work
 !*.sh
 !*.yml
+!*.yaml
+!*.api
 !*.toml

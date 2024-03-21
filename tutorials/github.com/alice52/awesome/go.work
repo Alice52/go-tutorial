@@ -7,4 +7,5 @@ use (
 	./test
 	./web/gin
 	./web/gin_practice
+	web/go-zero
 )
