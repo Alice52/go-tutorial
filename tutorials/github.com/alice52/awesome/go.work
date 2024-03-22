@@ -3,6 +3,7 @@ go 1.19
 use (
 	./common
 	./pkg
+	./pkg/gorm
 	./syntax/v2
 	./test
 	./web/gin
