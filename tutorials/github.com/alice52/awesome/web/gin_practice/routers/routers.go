@@ -1,6 +1,8 @@
 package routers
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/gin-gonic/gin"
+)
 
 type Option func(e *gin.Engine)
 

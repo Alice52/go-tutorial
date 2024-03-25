@@ -15,8 +15,10 @@ import (
 // @Success 200 {string} Helloworld
 // @Router /post [get]
 func postHandler(c *gin.Context) {
+
 	c.JSON(http.StatusOK, "post")
 }
 
 func commentHandler(c *gin.Context) {
+	c.JSON(http.StatusOK, "post")
 }
