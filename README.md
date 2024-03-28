@@ -1,7 +1,7 @@
 ## go-tutorial
 
 1. This repository records golang learning process
-2. pros: 简洁 & 高效
+2. pros: **简洁 & 高效**
 
 ## blemish
 
@@ -83,6 +83,15 @@
      type T interface {}
      type Trace struct {}
      ```
+
+7. 与 java 对比欠缺的特性
+
+   - 不支持 ThreadLocal 等隐式变量数据: 不能随时随地获取协程
+   - 泛型不友好: 编译时而非运行时
+   - 不支持 agent
+   - 不支持注解等标识特性
+   - 语言级特性很简单: 不支持重载/继承(OOP 不友好)
+   - 相关语法糖支持不够: stream(go-zero 实现)
 
 ## core point
 
