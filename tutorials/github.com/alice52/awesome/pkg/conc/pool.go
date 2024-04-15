@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"github.com/sourcegraph/conc/pool"
 	"strconv"
+	"time"
 )
 
 func poolDemo() {
@@ -39,6 +40,9 @@ func poolWithContextDemoCancelOnError() {
 				return errors.New("cancel all other tasks")
 			}
 			<-ctx.Done() // 确定一个上下文是否已经被取消
+
+			time.Sleep(10 * time.Second) // 已经并发出去的task是不可能取消的(java是有元数据)
+
 			fmt.Printf("end i: %d\n", i)
 			return nil
 		})
