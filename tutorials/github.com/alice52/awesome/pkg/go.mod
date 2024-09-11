@@ -1,12 +1,14 @@
 module github.com/alice52/awesome/pkg
 
-go 1.19
+go 1.21
+
+toolchain go1.23.1
 
 require (
 	github.com/go-playground/locales v0.14.1
 	github.com/go-playground/universal-translator v0.18.1
 	github.com/go-playground/validator/v10 v10.16.0
-	github.com/gookit/event v1.1.1
+	github.com/gookit/event v1.1.2
 	github.com/robfig/cron/v3 v3.0.1
 	github.com/sourcegraph/conc v0.3.0
 	github.com/uptrace/opentelemetry-go-extra/otelzap v0.2.4

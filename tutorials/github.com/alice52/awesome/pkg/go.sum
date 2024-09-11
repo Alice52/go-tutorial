@@ -26,6 +26,8 @@ github.com/google/go-cmp v0.5.5/go.mod h1:v8dTdLbMG2kIc/vJvl+f65V22dbkXbowE6jgT/
 github.com/google/go-cmp v0.6.0 h1:ofyhxvXcZhMsU5ulbFiLKl/XBFqE1GSq7atu8tAmTRI=
 github.com/gookit/event v1.1.1 h1:heYaXz4N2/0bgvGIwpEEfdW3PAaSWesGHy9/C+ZnZRI=
 github.com/gookit/event v1.1.1/go.mod h1:n0XbUJ4kqoCwhLOMeyyitM1AKa+dPgUPuy1vSybHXjg=
+github.com/gookit/event v1.1.2 h1:cYZWKJeoJWnP1ZxW1G+36GViV+hH9ksEorLqVw901Nw=
+github.com/gookit/event v1.1.2/go.mod h1:YIYR3fXnwEq1tey3JfepMt19Mzm2uxmqlpc7Dj6Ekng=
 github.com/grpc-ecosystem/grpc-gateway/v2 v2.19.0 h1:Wqo399gCIufwto+VfwCSvsnfGpF/w5E9CNxSwbpD6No=
 github.com/grpc-ecosystem/grpc-gateway/v2 v2.19.0/go.mod h1:qmOFXW2epJhM0qSnUUYpldc7gVz2KMQwJ/QYCDIa7XU=
 github.com/leodido/go-urn v1.2.4 h1:XlAE/cm/ms7TE/VMVoduSpNBoyc2dOxHs5MZSwAN63Q=
