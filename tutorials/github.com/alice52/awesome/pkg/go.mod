@@ -1,6 +1,6 @@
 module github.com/alice52/awesome/pkg
 
-go 1.19
+go 1.21
 
 require (
 	github.com/go-playground/locales v0.14.1
@@ -18,7 +18,7 @@ require (
 	go.opentelemetry.io/otel/metric v1.24.0
 	go.opentelemetry.io/otel/sdk v1.24.0
 	go.opentelemetry.io/otel/sdk/metric v1.24.0
-	go.uber.org/zap v1.27.0
+	go.uber.org/zap v1.27.1
 	gopkg.in/natefinch/lumberjack.v2 v2.2.1
 )
 
